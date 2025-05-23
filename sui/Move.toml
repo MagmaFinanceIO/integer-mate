@@ -3,9 +3,10 @@
 [package]
 name = "IntegerMate"
 version = "mainnet"
+published-at = "0x371953ac3c515695d04d1c77238ba9b0f251564ef8cf4b69d9261027d4f04fcf"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.41.1" }
 
 [addresses]
-integer_mate = "0x0"
+integer_mate = "0x659c0e9c4c8a416f040fa758d4fc4073a5fdd1fed97edadcd5cba5180fb36246"
