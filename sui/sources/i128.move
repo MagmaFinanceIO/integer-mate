@@ -84,10 +84,16 @@ module integer_mate::i128 {
     }
     
     public fun sub(num1: I128, num2: I128): I128 {
-        let sub_num = wrapping_add(I128 {
-            bits: u128_neg(num2.bits)
-        }, from(1));
-        add(num1, sub_num)
+        let diff = wrapping_sub(num1, num2);
+        let overflow = sign(num1) != sign(num2) && sign(num1) != sign(diff);
+        assert!(!overflow, EOverflow);
+        diff
+    }
+
+    #[test]
+    #[expected_failure(abort_code = EOverflow)]
+    fun test_sub_min_overflow() {
+        sub(from(0), neg_from(MIN_AS_U128));
     }
 
     public fun overflowing_sub(num1: I128, num2: I128): (I128, bool) {

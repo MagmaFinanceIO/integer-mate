@@ -74,10 +74,16 @@ module integer_mate::i32 {
     }
 
     public fun sub(num1: I32, num2: I32): I32 {
-        let sub_num = wrapping_add(I32 {
-            bits: u32_neg(num2.bits)
-        }, from(1));
-        add(num1, sub_num)
+        let diff = wrapping_sub(num1, num2);
+        let overflow = sign(num1) != sign(num2) && sign(num1) != sign(diff);
+        assert!(!overflow, EOverflow);
+        diff
+    }
+
+    #[test]
+    #[expected_failure(abort_code = EOverflow)]
+    fun test_sub_min_overflow() {
+        sub(from(0), neg_from(MIN_AS_U32));
     }
 
     public fun mul(num1: I32, num2: I32): I32 {
