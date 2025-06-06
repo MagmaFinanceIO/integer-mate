@@ -80,12 +80,6 @@ module integer_mate::i32 {
         diff
     }
 
-    #[test]
-    #[expected_failure(abort_code = EOverflow)]
-    fun test_sub_min_overflow() {
-        sub(from(0), neg_from(MIN_AS_U32));
-    }
-
     public fun mul(num1: I32, num2: I32): I32 {
         let product = abs_u32(num1) * abs_u32(num2);
         if (sign(num1) != sign(num2)) {
@@ -482,6 +476,12 @@ module integer_mate::i32 {
 
         i = mod(from(2), neg_from(5));
         assert!(cmp(i, from(2)) == EQ, 0);
+    }
+
+    #[test]
+    #[expected_failure(abort_code = EOverflow)]
+    fun test_sub_min_overflow() {
+        sub(from(0), neg_from(MIN_AS_U32));
     }
 }
 

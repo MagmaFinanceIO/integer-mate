@@ -90,12 +90,6 @@ module integer_mate::i128 {
         diff
     }
 
-    #[test]
-    #[expected_failure(abort_code = EOverflow)]
-    fun test_sub_min_overflow() {
-        sub(from(0), neg_from(MIN_AS_U128));
-    }
-
     public fun overflowing_sub(num1: I128, num2: I128): (I128, bool) {
         let sub_num = wrapping_add(I128 {
             bits: u128_neg(num2.bits)
@@ -526,6 +520,12 @@ module integer_mate::i128 {
     #[test]
     fun test_castdown() {
         assert!((1u128 as u8) == 1u8, 0);
+    }
+
+    #[test]
+    #[expected_failure(abort_code = EOverflow)]
+    fun test_sub_min_overflow() {
+        sub(from(0), neg_from(MIN_AS_U128));
     }
 }
 
