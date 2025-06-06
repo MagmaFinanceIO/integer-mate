@@ -3,7 +3,7 @@
 [package]
 name = "IntegerMate"
 version = "mainnet"
-published-at = "0x371953ac3c515695d04d1c77238ba9b0f251564ef8cf4b69d9261027d4f04fcf"
+published-at = "0x599866e9faedafd1c0a451baa4645a504fedc4db2bae88679d1a022221e8cbf6"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.41.1" }
